@@ -1,0 +1,47 @@
+// Alogus examples
+
+imposters 1 // Optional, the default value is 1, cant be less than 1, if set lower imposters = Infinity
+// This can only be set once, at the start of a file
+
+crewmate a_variable name "string"
+// or
+cr another_variable votes {a_variable, a_variable} // Adds 2 votes from a_variable to another_variable
+
+sus a_variable // print "string sus"
+chat a_variable // print "string"
+chat another_variable // error, the crewmate has no name
+chat votes(another_variable) // print "2"
+// or
+chat vo(another_variable) // print "2"
+
+a_variable votes {another_variable, another_variable, another_variable}
+// this crewmate now has 3 votes as well as the name "string"
+
+room an_array
+room another_array [a_variable, another_variable]
+// Be aware that a room with only two crewmates could contain an imposter
+// If you find that one of your crewmates in a room is gone, be sure to eject the imposter
+eject a_variable // If a_variable was the imposter
+
+all crewmate in an_array {
+    sus crewmate
+}
+
+some (i, 0, 9) {
+    sus i
+}
+
+task a_function(tool screwdriver) {
+    // tools can only be used for tasks
+    // crewmates can also be used
+    // the contents of this task
+    chat screwdriver
+}
+
+// a task must always be run by a crewmate
+cr crewmate3
+a_function(tool "hello") crewmate3
+// Be aware that if the crewmate is an imposter, the task may return an incorrect value
+
+// Lines can be separated with a semicolon
+cr crewmate4;sus "hi";
